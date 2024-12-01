@@ -3,7 +3,6 @@ package day_1_2
 import (
 	"adventOfCode/util"
 	"fmt"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -42,23 +41,26 @@ func Main() {
 	lines := strings.Split(data, "\n")
 
 	var list1 []int
-	var list2 []int
+	map2 := map[int]int{}
 
 	for _, line := range lines {
 		n1, n2 := readLine(line)
 		list1 = append(list1, n1)
-		list2 = append(list2, n2)
+
+		val, ok := map2[n2]
+
+		if !ok {
+			val = 0
+		}
+		map2[n2] = val + 1
 	}
 
-	sort.Ints(list1)
-	sort.Ints(list2)
-
-	diff := int64(0)
+	result := int64(0)
 
 	for i := 0; i < len(list1); i++ {
-		//fmt.Println(list1[i], list2[i], util.Abs(int64(list1[i]-list2[i])))
-		diff += util.Abs(int64(list1[i] - list2[i]))
+		num := list1[i]
+		result += int64(num * map2[num])
 	}
 
-	fmt.Println(diff)
+	fmt.Println(result)
 }
