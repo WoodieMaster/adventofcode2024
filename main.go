@@ -3,6 +3,8 @@ package main
 import (
 	"adventOfCode/day_1_1"
 	"adventOfCode/day_1_2"
+	"adventOfCode/day_2_1"
+	"adventOfCode/day_2_2"
 	"log"
 	"os"
 )
@@ -10,6 +12,8 @@ import (
 var puzzles = map[string]func(){
 	"1_1": day_1_1.Main,
 	"1_2": day_1_2.Main,
+	"2_1": day_2_1.Main,
+	"2_2": day_2_2.Main,
 }
 
 func main() {
