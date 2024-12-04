@@ -37,3 +37,9 @@ func Abs(n int64) int64 {
 	}
 	return n
 }
+
+func Assert(condition bool, msg string) {
+	if !condition {
+		panic(msg)
+	}
+}
