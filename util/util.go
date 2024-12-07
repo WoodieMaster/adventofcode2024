@@ -31,6 +31,10 @@ func Must[T any](data T, err error) T {
 	return data
 }
 
+func SliceGridInbound[T any](grid [][]T, col int, row int) bool {
+	return row >= 0 && row < len(grid) && col >= 0 && col < len(grid[row])
+}
+
 func Abs(n int64) int64 {
 	if n < 0 {
 		return -n
