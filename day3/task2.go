@@ -1,4 +1,4 @@
-package day_3_2
+package day3
 
 import (
 	"adventOfCode/util"
@@ -10,7 +10,7 @@ import (
 const mulRegex = `(mul)\((\d+),(\d+)\)`
 const conditionRegex = `(do(n't)?)\(\)`
 
-func Main() {
+func Task2() {
 	data := util.LoadFile(3)
 	regex := regexp.MustCompile(mulRegex + "|" + conditionRegex)
 

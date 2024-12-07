@@ -1,22 +1,21 @@
-package day_4_1
+package day4
 
 import (
 	"adventOfCode/util"
 	"fmt"
-	"strings"
 )
 
-const targetStr = "XMAS"
+const targetStr1 = "XMAS"
 
 func countFromX(grid []string, row int, col int) int {
 	count := 0
 
-	util.Assert(grid[row][col] == targetStr[0], "should be "+string(targetStr[0]))
+	util.Assert(grid[row][col] == targetStr1[0], "should be "+string(targetStr1[0]))
 
 	for rowMul := -1; rowMul <= 1; rowMul++ {
 		for colMul := -1; colMul <= 1; colMul++ {
 			valid := true
-			for idx, char := range targetStr {
+			for idx, char := range targetStr1 {
 				if idx == 0 {
 					continue
 				}
@@ -38,16 +37,14 @@ func countFromX(grid []string, row int, col int) int {
 	return count
 }
 
-func Main() {
-	data := util.LoadFile(4)
-
-	lines := strings.Split(data, "\n")
+func Task1() {
+	lines := loadData()
 
 	result := 0
 
 	for row, line := range lines {
 		for col, char := range line {
-			if char == int32(targetStr[0]) {
+			if char == int32(targetStr1[0]) {
 				result += countFromX(lines, row, col)
 			}
 		}

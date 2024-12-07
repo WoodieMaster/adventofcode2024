@@ -1,4 +1,4 @@
-package day_3_1
+package day3
 
 import (
 	"adventOfCode/util"
@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func Main() {
+func Task1() {
 	data := util.LoadFile(3)
 	regex := regexp.MustCompile(`mul\((\d+),(\d+)\)`)
 
