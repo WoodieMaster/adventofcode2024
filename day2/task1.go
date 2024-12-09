@@ -11,7 +11,7 @@ func validateLine1(line []int) bool {
 	for _, number := range line[1:] {
 		newDiff := number - prev
 
-		absDiff := util.Abs(int64(newDiff))
+		absDiff := util.Abs(newDiff)
 
 		if absDiff < 1 || absDiff > 3 || (newDiff < 0 && diff > 0) || (newDiff > 0 && diff < 0) {
 			return false

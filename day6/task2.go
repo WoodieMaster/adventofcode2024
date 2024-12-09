@@ -1,12 +1,13 @@
 package day6
 
 import (
+	"adventOfCode/util"
 	"fmt"
 	"maps"
 	"slices"
 )
 
-func addStateToVisited(visitedPoints VisitedRecord, currentPos Point, currentDir Direction) bool {
+func addStateToVisited(visitedPoints VisitedRecord, currentPos util.Vec2, currentDir Direction) bool {
 	dirs, ok := visitedPoints[currentPos]
 
 	if !ok {
@@ -19,10 +20,10 @@ func addStateToVisited(visitedPoints VisitedRecord, currentPos Point, currentDir
 		return true
 	}
 
-	return false // Point already visited with the same direction
+	return false // Vec2 already visited with the same direction
 }
 
-type VisitedRecord map[Point][]Direction
+type VisitedRecord map[util.Vec2][]Direction
 
 func cloneVisited(src VisitedRecord) VisitedRecord {
 	dst := VisitedRecord{}
@@ -34,7 +35,7 @@ func cloneVisited(src VisitedRecord) VisitedRecord {
 	return dst
 }
 
-func checkForLoop(grid Grid, alreadyVisited VisitedRecord, startPos Point, startDir Direction) bool {
+func checkForLoop(grid Grid, alreadyVisited VisitedRecord, startPos util.Vec2, startDir Direction) bool {
 	visitedPoints := cloneVisited(alreadyVisited)
 	currentPos := startPos
 	currentDir := startDir
@@ -45,7 +46,7 @@ func checkForLoop(grid Grid, alreadyVisited VisitedRecord, startPos Point, start
 			break
 		}
 		currentDir = dir
-		currentPos = addPoint(currentPos, dirToPosChange(currentDir))
+		currentPos = util.AddVec2(currentPos, dirToPosChange(currentDir))
 
 		if !addStateToVisited(visitedPoints, currentPos, currentDir) {
 			return true
@@ -55,7 +56,7 @@ func checkForLoop(grid Grid, alreadyVisited VisitedRecord, startPos Point, start
 	return false
 }
 
-func FindPossibleLoops(grid Grid, startPos Point) (result []Point) {
+func FindPossibleLoops(grid Grid, startPos util.Vec2) (result []util.Vec2) {
 	visitedPoints := VisitedRecord{}
 
 	currentPos := startPos
@@ -69,7 +70,7 @@ func FindPossibleLoops(grid Grid, startPos Point) (result []Point) {
 		if !inside {
 			break
 		}
-		nextPos := addPoint(currentPos, dirToPosChange(nextDir))
+		nextPos := util.AddVec2(currentPos, dirToPosChange(nextDir))
 
 		if grid[nextPos.Row][nextPos.Col] == Empty {
 			grid[nextPos.Row][nextPos.Col] = Visited

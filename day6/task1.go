@@ -1,11 +1,12 @@
 package day6
 
 import (
+	"adventOfCode/util"
 	"fmt"
 )
 
-func traceGuardSteps(grid Grid, start Point) int {
-	visitedPoints := map[Point]bool{}
+func traceGuardSteps(grid Grid, start util.Vec2) int {
+	visitedPoints := map[util.Vec2]bool{}
 	currentPos := start
 	currentDir := Up
 
@@ -15,7 +16,7 @@ func traceGuardSteps(grid Grid, start Point) int {
 			break
 		}
 		currentDir = dir
-		currentPos = addPoint(currentPos, dirToPosChange(currentDir))
+		currentPos = util.AddVec2(currentPos, dirToPosChange(currentDir))
 		visitedPoints[currentPos] = true
 		if grid[currentPos.Row][currentPos.Col] == Empty {
 			grid[currentPos.Row][currentPos.Col] = Visited

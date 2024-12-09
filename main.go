@@ -7,6 +7,8 @@ import (
 	"adventOfCode/day4"
 	"adventOfCode/day5"
 	"adventOfCode/day6"
+	"adventOfCode/day7"
+	"adventOfCode/day8"
 	"fmt"
 	"log"
 	"os"
@@ -25,6 +27,10 @@ var puzzles = map[string]func(){
 	"5_2": day5.Task2,
 	"6_1": day6.Task1,
 	"6_2": day6.Task2,
+	"7_1": day7.Task1,
+	"7_2": day7.Task2,
+	"8_1": day8.Task1,
+	"8_2": day8.Task2,
 }
 
 func main() {

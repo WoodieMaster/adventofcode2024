@@ -34,10 +34,10 @@ func printGrid(grid Grid) {
 	}
 }
 
-func NextMoveDir(grid Grid, position Point, direction Direction) (Direction, bool) {
-	nextPos := addPoint(position, dirToPosChange(direction))
+func NextMoveDir(grid Grid, position util.Vec2, direction Direction) (Direction, bool) {
+	nextPos := util.AddVec2(position, dirToPosChange(direction))
 
-	if !util.SliceGridInbound(grid, nextPos.Col, nextPos.Row) {
+	if !util.DoubleSliceInbound(grid, nextPos.Col, nextPos.Row) {
 		return 0, false
 	}
 
@@ -47,34 +47,25 @@ func NextMoveDir(grid Grid, position Point, direction Direction) (Direction, boo
 	return NextMoveDir(grid, position, turnRight(direction))
 }
 
-func dirToPosChange(dir Direction) Point {
+func dirToPosChange(dir Direction) util.Vec2 {
 	switch dir {
 	case Up:
-		return Point{Row: -1, Col: 0}
+		return util.Vec2{Row: -1, Col: 0}
 	case Right:
-		return Point{Row: 0, Col: 1}
+		return util.Vec2{Row: 0, Col: 1}
 	case Down:
-		return Point{Row: 1, Col: 0}
+		return util.Vec2{Row: 1, Col: 0}
 	case Left:
-		return Point{Row: 0, Col: -1}
+		return util.Vec2{Row: 0, Col: -1}
 	}
 	panic("Invalid dir " + strconv.Itoa(int(dir)))
-}
-
-type Point struct {
-	Row int
-	Col int
-}
-
-func addPoint(a Point, b Point) Point {
-	return Point{Col: a.Col + b.Col, Row: a.Row + b.Row}
 }
 
 type Direction uint8
 
 type Grid [][]uint8
 
-func loadAndParseData() (grid Grid, start Point) {
+func loadAndParseData() (grid Grid, start util.Vec2) {
 	data := util.LoadFile(6)
 
 	lines := strings.Split(data, "\n")
@@ -88,7 +79,7 @@ func loadAndParseData() (grid Grid, start Point) {
 				cellType = Obstacle
 			case '^':
 				cellType = Start
-				start = Point{Row: rowIdx, Col: colIdx}
+				start = util.Vec2{Row: rowIdx, Col: colIdx}
 			}
 
 			gridLine = append(gridLine, cellType)

@@ -17,7 +17,7 @@ Outer:
 		for _, number := range usedLine[1:] {
 			newDiff := number - prev
 
-			absDiff := util.Abs(int64(newDiff))
+			absDiff := util.Abs(newDiff)
 
 			if absDiff < 1 || absDiff > 3 || (newDiff < 0 && diff > 0) || (newDiff > 0 && diff < 0) {
 				continue Outer

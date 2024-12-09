@@ -23,7 +23,7 @@ func Task1() {
 	diff := int64(0)
 
 	for i := 0; i < len(list1); i++ {
-		diff += util.Abs(int64(list1[i] - list2[i]))
+		diff += int64(util.Abs(list1[i] - list2[i]))
 	}
 
 	fmt.Println(diff)
